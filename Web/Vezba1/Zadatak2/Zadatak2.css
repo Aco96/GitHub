@@ -1,0 +1,14 @@
+﻿body {
+    background-color:teal;
+    color:black;
+}
+
+#table {
+    background-color: gray;
+    border: 1px solid;
+}
+
+td,th {
+    border:1px solid;
+    
+}

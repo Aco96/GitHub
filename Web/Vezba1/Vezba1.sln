@@ -25,6 +25,94 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Zadatak1", "Zadatak1\", "{F
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Zadatak2", "Zadatak2\", "{7BE642D9-09A2-42A3-B4D8-C75BAA7BE7B8}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_59097"
+		Debug.AspNetCompiler.PhysicalPath = "Zadatak2\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59097\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_59097"
+		Release.AspNetCompiler.PhysicalPath = "Zadatak2\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59097\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "59097"
+		SlnRelativePath = "Zadatak2\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Zadatak3", "Zadatak3\", "{B66BCDF6-A403-42BA-B7F2-301C3B4A18A0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60395"
+		Debug.AspNetCompiler.PhysicalPath = "Zadatak3\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60395\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60395"
+		Release.AspNetCompiler.PhysicalPath = "Zadatak3\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60395\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "60395"
+		SlnRelativePath = "Zadatak3\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Zadatak4", "Zadatak4\", "{631B808C-78F8-47B5-9A94-1B9370D45D1A}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60527"
+		Debug.AspNetCompiler.PhysicalPath = "Zadatak4\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60527\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60527"
+		Release.AspNetCompiler.PhysicalPath = "Zadatak4\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60527\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "60527"
+		SlnRelativePath = "Zadatak4\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Zadatak5", "Zadatak5\", "{2D338E02-7FD5-490D-A8AD-5B1FBD66FEE0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60604"
+		Debug.AspNetCompiler.PhysicalPath = "Zadatak5\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60604\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60604"
+		Release.AspNetCompiler.PhysicalPath = "Zadatak5\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60604\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "60604"
+		SlnRelativePath = "Zadatak5\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +120,14 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FA6DD6F7-971A-477C-B2D9-2DB206B53440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FA6DD6F7-971A-477C-B2D9-2DB206B53440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BE642D9-09A2-42A3-B4D8-C75BAA7BE7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BE642D9-09A2-42A3-B4D8-C75BAA7BE7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B66BCDF6-A403-42BA-B7F2-301C3B4A18A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B66BCDF6-A403-42BA-B7F2-301C3B4A18A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{631B808C-78F8-47B5-9A94-1B9370D45D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{631B808C-78F8-47B5-9A94-1B9370D45D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D338E02-7FD5-490D-A8AD-5B1FBD66FEE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D338E02-7FD5-490D-A8AD-5B1FBD66FEE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

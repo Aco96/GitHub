@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link href="Zadatak2.css" rel="stylesheet" />
+        <title>Registracija</title>
+    </head>
+    <body>
+        <h1>Produzene registracije</h1>
+        <p>Na ovoj stranici mozete obaviti produzenje registracije vaseg automobila.<br />Molimo vas da popunite sledeci formular.</p>
+        <form action="/Zadatak2-submit.html" method="get" >
+            <fieldset >
+                <legend>Produzenje registracije</legend>
+                Ime: <br />
+                <input type="text" /><br>
+
+                Prezime: <br />
+                <input type="text" /><br>
+
+                JMBG: <br />
+                <input type="number" /><br>
+
+                Marka vozila: <br />
+                <select>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="peugeot">Peugeot</option>
+                    <option value="renault">Renault</option>
+                </select> <br />
+                
+                Tip vozila: <br />
+                <input type="text" /><br />
+
+                Registarska oznaka: <br />
+                <input type="text" /><br /> <br />
+
+                <input type="submit"  value="Submit" />
+                </fieldset>
+        </form>
+    </body>
+</html>
