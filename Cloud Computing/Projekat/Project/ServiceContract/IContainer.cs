@@ -11,6 +11,6 @@ namespace ServiceContract
     public interface IContainer
     {
         [OperationContract]
-        String Load(string dll);
+        String Load(string dll, int i);
     }
 }

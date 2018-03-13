@@ -12,15 +12,15 @@ namespace Container
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(args[0]);
-
             ServiceHost svc = new ServiceHost(typeof(Container));
             svc.AddServiceEndpoint(typeof(IContainer),
             new NetTcpBinding(),
-            new Uri("net.tcp://localhost:"+args[0]+"/IContainer"));
+            new Uri($"net.tcp://localhost:{args[0]}/IContainer"));
+
+            
 
             svc.Open();
-            Console.WriteLine("Service host is open on " + args[0]+" port.\n");
+            Console.WriteLine("Service host is open on " + args[0]+" port.\n_______________________________________________");
             Console.ReadKey();
         }
     }
