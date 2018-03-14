@@ -10,39 +10,31 @@ namespace Compute
 {
     class WorkerRole : IWorkerRole
     {
+        public static Process[] processes = new Process[4];
         public void Start(string containerId)
         {
-            Process firstProc = new Process();
-            switch (containerId)
-            {
-                case "1":
-                    firstProc.StartInfo.Arguments = "10010";
-                    break;
-                case "2":
-                    firstProc.StartInfo.Arguments = "10020";
-                    break;
-                case "3":
-                    firstProc.StartInfo.Arguments = "10030";
-                    break;
-                case "4":
-                    firstProc.StartInfo.Arguments = "10040";
-                    break;
-                default:
-                    break;
-            }
-            
-                
-                firstProc.StartInfo.FileName = @"D:\GitHub\Cloud Computing\Projekat\Project\Container\bin\Debug\Container.exe";
-                
-                firstProc.EnableRaisingEvents = true;
+            processes[int.Parse(containerId) - 1] = new Process();
+            processes[int.Parse(containerId)-1].StartInfo.Arguments = $"100{containerId}0";
 
-                firstProc.Start();
+
+            processes[int.Parse(containerId) - 1].StartInfo.FileName = @"D:\GitHub\Cloud Computing\Projekat\Project\Container\bin\Debug\Container.exe";
+
+            processes[int.Parse(containerId) - 1].EnableRaisingEvents = true;
+
+
+
+            processes[int.Parse(containerId) - 1].Start();
             
         }
 
-        public void Stop()
+        public void Stop(string containerId)
         {
-            throw new NotImplementedException();
+            try {
+                processes[int.Parse(containerId) - 1].Kill() ;
+                WorkerRole wr = new WorkerRole();
+                wr.Start(containerId);
+            }
+            catch(Exception e) { }
         }
     }
 }
