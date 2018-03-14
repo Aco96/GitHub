@@ -22,6 +22,7 @@ namespace Container
             svc.Open();
             Console.WriteLine("Service host is open on " + args[0]+" port.\n_______________________________________________");
             Console.ReadKey();
+            svc.Close();
         }
     }
 }

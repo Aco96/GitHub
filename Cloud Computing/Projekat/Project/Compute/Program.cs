@@ -15,89 +15,93 @@ namespace Compute
     class Program
     {
         public static IContainer[] proxy = new IContainer[4];
-        //string[] portovi = new string[] { "10010", "10020", "10030", "10040" };
         public static Dictionary<int, bool> portovi = new Dictionary<int, bool>() { {1,false }, { 2, false }, { 3, false }, { 4, false } };
-        public static string path = @"D:\GitHub\Cloud Computing\Projekat\MainFolder\FolderForChecking";
         public static int containersCnt = 4;
+
+        public static string path = @"D:\GitHub\Cloud Computing\Projekat\MainFolder\FolderForChecking";
+        
+        public static List<string> XMLs = new List<string>();
+        public static List<string> DLLs = new List<string>();
+
+        public static WorkerRole wr = new WorkerRole();
+
         static void Main(string[] args)
         {
             startContainers();
 
             Connect();
 
-
-
-            List<string> XMLs = new List<string>();
-            List<string> DLLs = new List<string>();
-            int i = 0;
-            while (true)
-            {
-                while (DLLs.Capacity < 1 || XMLs.Capacity < 1)
-                {
-                    DLLs = Directory.GetFiles(path, "*.dll").ToList<string>();
-                    XMLs = Directory.GetFiles(path, "*.xml").ToList<string>();
-                    Console.WriteLine("empty");
-                    Thread.Sleep(2000);
-                }
-
-                Console.WriteLine("not empty");
-
-
-                int instace = readXML(XMLs[0]);
-
-                if (containersCnt >= instace)
-                {
-                    int[] pom = new int[4] { -1, -1, -1, -1 };
-                    
-                    foreach (KeyValuePair<int, bool> port in portovi)
-                    {
-                        if (port.Value == false && instace != 0)
-                        {
-                            Task.Factory.StartNew(() => proxy[port.Key - 1].Load(DLLs[0], port.Key));
-                            //proxy[port.Key ].Load(DLLs[0], port.Key+1);
-                            //portovi[port.Key] = true;
-                            pom[i] = port.Key; // PROVERITI ZASTO i NE RADI KAKO TREBA LOGIKA!!!!
-                            i++;
-                            instace--;
-
-                        }
-                    }
-
-                    for (int j = 0; i < 4; i++)
-                    {
-                        if(pom[j] != -1)
-                        {
-                            portovi[pom[j]] = true;
-                        }
-                    }
-                }
-
-                //proxy[0].Load(DLLs[0], 1);
-
-
-                //for (int i = 0; i < DLLs.Length; i++)
-                //{
-                //    Console.WriteLine(DLLs[i]);
-                //}
-
-
-
-
-
-                //writeXML();
-                //
-
-                //copyFile("../../", "../", "File.xml");
-
-
-                Console.ReadKey();
-            }
+            meni();
             
+            Console.WriteLine("End of Compute.");
+            Console.ReadKey();
+        }
+
+        public static void closeContainer(int flag)
+        {
+            if (flag == 0)
+            {
+                Console.WriteLine("Enter number of container(1-4).");
+                string s = Console.ReadLine();
+                portovi[int.Parse(s)] = false;
+                containersCnt++;
+                wr.Stop(s);
+            }
+            else
+            {
+                for (int i = 1;i<= 4 ;i ++)
+                {
+                    wr.Stop(i.ToString());
+                }
+                
+            }
+        }
+
+        public static void meni()
+        {
+            int i = 0;
+            bool end = false;
+            int[] pom = new int[4] { -1, -1, -1, -1 };
+            while (!end)
+            {
+                Console.Clear();
+                Console.WriteLine("Meni");
+                Console.WriteLine("1. Check Packet.");
+                Console.WriteLine("2. Close Container.");
+                Console.WriteLine("3. Exit.");
+
+                int answer = -1;
+
+                try
+                {
+                    answer = int.Parse(Console.ReadLine());
+                }
+                catch (Exception e)
+                {
+
+                }
+                switch (answer)
+                {
+                    case 1:
+                        checkPacket(i, pom);
+                        break;
+                    case 2:
+                        closeContainer(0);
+                        break;
+                    case 3:
+                        closeContainer(1);
+                        end = true;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
         }
 
         public static void startContainers()
         {
-            WorkerRole wr = new WorkerRole();
+            //WorkerRole wr = new WorkerRole();
             for (int i = 1; i <= 4; i++)
             {
                 wr.Start(i.ToString());
@@ -105,6 +109,55 @@ namespace Compute
             }
         }
 
+        public static void checkPacket(int i,int[] pom)
+        {
+            while (DLLs.Capacity < 1 || XMLs.Capacity < 1)
+            {
+                DLLs = Directory.GetFiles(path, "*.dll").ToList<string>();
+                XMLs = Directory.GetFiles(path, "*.xml").ToList<string>();
+                Console.WriteLine("empty");
+                Thread.Sleep(2000);
+            }
+
+            Console.WriteLine("not empty");
+
+
+            int instace = readXML(XMLs[0]);
+            if (containersCnt == 0)
+            {
+                Console.WriteLine("There is no containers available.");
+            }
+            else if (containersCnt >= instace)
+            {
+
+
+                foreach (KeyValuePair<int, bool> port in portovi)
+                {
+                    if (port.Value == false && instace != 0)
+                    {
+                        Task.Factory.StartNew(() => proxy[port.Key - 1].Load(DLLs[0], port.Key));
+                        pom[i] = port.Key;
+                        i++;
+                        instace--;
+                        containersCnt--;
+
+                    }
+                }
+
+                for (int j = 0; j < 4; j++)
+                {
+                    if (pom[j] != -1)
+                    {
+                        portovi[pom[j]] = true;
+                    }
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("There is not enought Containers left for your aplication.");
+            }
+        }
  
         public static void writeXML()
         {
@@ -162,7 +215,7 @@ namespace Compute
                 }
             }
 
-            Console.Write(instanci + "\n" +path);
+            //Console.Write(instanci + "\n" +path);
 
             return instanci;
         }

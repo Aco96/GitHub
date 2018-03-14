@@ -9,6 +9,6 @@ namespace ServiceContract
     public interface IWorkerRole
     {
         void Start(String containerId);
-        void Stop();
+        void Stop(String containerId);
     }
 }
