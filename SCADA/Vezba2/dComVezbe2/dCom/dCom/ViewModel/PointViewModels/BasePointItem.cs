@@ -72,19 +72,16 @@ namespace dCom.ViewModel
                     case PointType.DO_REG:
                         p = new ModbusWriteCommandParameters(6, (byte)ModbusFunctionCode.WRITE_SINGLE_COIL, address, RawValue);
                         break;
-                    case PointType.IN_REG:
-                        break;
+
                     case PointType.HR_INT:
                         p = new ModbusWriteCommandParameters(6, (byte)ModbusFunctionCode.WRITE_SINGLE_REGISTER, address, RawValue);
                         break;
+
                     default:
                         break;
                 }
 
-                if (type == PointType.DO_REG)
-                {
-                   
-                }
+                
                 
                 // TODO implement
                 ModbusFunction fn = FunctionFactory.CreateModbusFunction(p);

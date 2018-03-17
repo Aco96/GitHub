@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
@@ -111,7 +112,7 @@ namespace Compute
 
         public static void checkPacket(int i,int[] pom)
         {
-            while (DLLs.Capacity < 1 || XMLs.Capacity < 1)
+            while (DLLs.Count < 1 || XMLs.Count < 1)
             {
                 DLLs = Directory.GetFiles(path, "*.dll").ToList<string>();
                 XMLs = Directory.GetFiles(path, "*.xml").ToList<string>();
@@ -120,44 +121,76 @@ namespace Compute
             }
 
             Console.WriteLine("not empty");
-
+            //File.Delete(DLLs[0]);
 
             int instace = readXML(XMLs[0]);
             if (containersCnt == 0)
             {
                 Console.WriteLine("There is no containers available.");
+                File.Delete(DLLs[0]);
+                
             }
             else if (containersCnt >= instace)
             {
+                Assembly dll = Assembly.Load(File.ReadAllBytes(DLLs[0]));
+                int flag = -1;
 
-
-                foreach (KeyValuePair<int, bool> port in portovi)
+                foreach (var type in dll.GetTypes())
                 {
-                    if (port.Value == false && instace != 0)
+                    var myInterfaceType = typeof(IWorkerRole);
+                    if (type.Name == "IWorkerRole")
                     {
-                        Task.Factory.StartNew(() => proxy[port.Key - 1].Load(DLLs[0], port.Key));
-                        pom[i] = port.Key;
-                        i++;
-                        instace--;
-                        containersCnt--;
+                        Console.WriteLine("{0} implements IWorkerRole", type);
+                        flag = 1;
+                        foreach (KeyValuePair<int, bool> port in portovi)
+                        {
+                            if (port.Value == false && instace != 0)
+                            {
+                                Task.Factory.StartNew(() => proxy[port.Key - 1].Load(DLLs[0], port.Key));
+                                Console.WriteLine("sent");
 
+                                pom[i] = port.Key;
+                                i++;
+                                instace--;
+                                containersCnt--;
+                            }
+                        }
+                        Console.ReadKey();
+
+                        for (int j = 0; j < 4; j++)
+                        {
+                            if (pom[j] != -1)
+                            {
+                                portovi[pom[j]] = true;
+                            }
+                        }
                     }
-                }
 
-                for (int j = 0; j < 4; j++)
+                }
+                if(flag == -1)
                 {
-                    if (pom[j] != -1)
-                    {
-                        portovi[pom[j]] = true;
-                    }
-                }
+                    Console.WriteLine("Founded file doesn't implement IWorkerRole inteface,please implement it and add your packet again.\nPress any key to get back to meni.");
+                    dll = null;
 
+                    Console.ReadKey();
+                    File.Delete(DLLs[0]);
+                    DLLs.Clear();
+                    XMLs.Clear();
+                }
             }
             else
             {
                 Console.WriteLine("There is not enought Containers left for your aplication.");
+                File.Delete(DLLs[0]);
+                DLLs.Clear();
+                XMLs.Clear();
             }
+
+            DLLs.Clear();
+            XMLs.Clear();
         }
+
+
  
         public static void writeXML()
         {

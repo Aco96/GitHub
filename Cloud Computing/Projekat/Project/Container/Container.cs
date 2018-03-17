@@ -28,13 +28,14 @@ namespace Container
             }
             else
             {
-                Console.WriteLine("source or destination path doesn't wxists.");
+                Console.WriteLine("source or destination path doesn't exists.");
             }
 
             var DLL = Assembly.LoadFile(destFile);
 
 
-            dynamic c = Activator.CreateInstance(DLL.GetExportedTypes()[0]);
+
+            dynamic c = Activator.CreateInstance(DLL.GetExportedTypes()[1]);
             c.begin();
 
             return "success";
